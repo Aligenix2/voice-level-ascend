@@ -2,41 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* NEURA Design System - Dark Neural Theme with Gradients */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark Neural Color Palette */
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 224 39% 10%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 224 39% 10%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Neural Accent Colors */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 7%;
+    --primary-glow: 217 91% 70%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 21% 15%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 25% 18%;
+    --muted-foreground: 217 10% 64%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 142 86% 28%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 215 25% 20%;
+    --input: 215 25% 18%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.5rem;
+    /* Neural Gradients */
+    --gradient-neural: linear-gradient(135deg, hsl(217 91% 60%), hsl(142 86% 28%));
+    --gradient-dark: linear-gradient(180deg, hsl(222 47% 7%), hsl(224 39% 10%));
+    --gradient-card: linear-gradient(145deg, hsl(224 39% 10%), hsl(215 25% 15%));
+    --gradient-accent: linear-gradient(90deg, hsl(217 91% 60% / 0.1), hsl(142 86% 28% / 0.1));
+
+    /* Shadows and Effects */
+    --shadow-neural: 0 10px 30px -10px hsl(217 91% 60% / 0.3);
+    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.4);
+    --shadow-card: 0 4px 20px hsl(222 47% 4% / 0.5);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +117,105 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-dark);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Neural UI Components */
+  .neural-card {
+    @apply bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+  
+  .neural-button {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
+    background: var(--gradient-neural);
+    box-shadow: var(--shadow-neural);
+    transition: var(--transition-smooth);
+  }
+  
+  .neural-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .neural-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .neural-animate {
+    animation: neuralPulse 3s ease-in-out infinite;
+  }
+  
+  .gradient-text {
+    background: var(--gradient-neural);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-bounce-in {
+    animation: bounceIn 0.8s var(--transition-bounce);
+  }
+}
+
+@keyframes neuralPulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
