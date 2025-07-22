@@ -6,42 +6,42 @@
 
 @layer base {
   :root {
-    /* Dark Neural Color Palette */
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
+    /* Purple-Blue Dark Color Palette */
+    --background: 250 30% 8%;
+    --foreground: 250 20% 95%;
 
-    --card: 224 39% 10%;
-    --card-foreground: 210 40% 98%;
+    --card: 250 25% 12%;
+    --card-foreground: 250 20% 95%;
 
-    --popover: 224 39% 10%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 250 25% 12%;
+    --popover-foreground: 250 20% 95%;
 
-    /* Neural Accent Colors */
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 7%;
-    --primary-glow: 217 91% 70%;
+    /* Primary Purple-Blue Colors */
+    --primary: 261 83% 58%;
+    --primary-foreground: 250 20% 95%;
+    --primary-glow: 280 100% 70%;
 
-    --secondary: 240 21% 15%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 250 20% 20%;
+    --secondary-foreground: 250 20% 95%;
 
-    --muted: 215 25% 18%;
-    --muted-foreground: 217 10% 64%;
+    --muted: 250 15% 15%;
+    --muted-foreground: 250 10% 65%;
 
-    --accent: 142 86% 28%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 233 71% 55%;
+    --accent-foreground: 250 20% 95%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 250 20% 95%;
 
-    --border: 215 25% 20%;
-    --input: 215 25% 18%;
-    --ring: 217 91% 60%;
+    --border: 250 15% 20%;
+    --input: 250 15% 18%;
+    --ring: 261 83% 58%;
 
-    /* Neural Gradients */
-    --gradient-neural: linear-gradient(135deg, hsl(217 91% 60%), hsl(142 86% 28%));
-    --gradient-dark: linear-gradient(180deg, hsl(222 47% 7%), hsl(224 39% 10%));
-    --gradient-card: linear-gradient(145deg, hsl(224 39% 10%), hsl(215 25% 15%));
-    --gradient-accent: linear-gradient(90deg, hsl(217 91% 60% / 0.1), hsl(142 86% 28% / 0.1));
+    /* Purple-Blue Gradients */
+    --gradient-neural: linear-gradient(135deg, hsl(261 83% 58%), hsl(280 100% 70%));
+    --gradient-dark: linear-gradient(180deg, hsl(250 30% 8%), hsl(250 25% 12%));
+    --gradient-card: linear-gradient(145deg, hsl(250 25% 12%), hsl(250 20% 20%));
+    --gradient-accent: linear-gradient(90deg, hsl(261 83% 58% / 0.1), hsl(233 71% 55% / 0.1));
 
     /* Shadows and Effects */
     --shadow-neural: 0 10px 30px -10px hsl(217 91% 60% / 0.3);

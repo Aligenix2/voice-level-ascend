@@ -47,19 +47,43 @@ export const SpeechRecorder = ({ onRecordingComplete, narrative }: SpeechRecorde
 
       recognitionRef.current.onresult = (event: any) => {
         let finalTranscript = '';
+        let interimTranscript = '';
+        
         for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
           if (event.results[i].isFinal) {
-            finalTranscript += event.results[i][0].transcript;
+            finalTranscript += transcript + ' ';
+          } else {
+            interimTranscript += transcript;
           }
         }
+        
         if (finalTranscript) {
-          setTranscript(prev => prev + ' ' + finalTranscript);
+          setTranscript(prev => (prev + finalTranscript).trim());
+        } else if (interimTranscript) {
+          setTranscript(prev => {
+            const words = prev.split(' ');
+            // Remove last interim word and add new interim
+            const finalWords = words.slice(0, -1).join(' ');
+            return finalWords ? finalWords + ' ' + interimTranscript : interimTranscript;
+          });
         }
       };
 
       recognitionRef.current.onerror = (event: any) => {
         console.error('Speech recognition error:', event.error);
+        toast({
+          title: "Speech Recognition Error",
+          description: `Error: ${event.error}. Please try again.`,
+          variant: "destructive",
+        });
       };
+    } else {
+      toast({
+        title: "Speech Recognition Not Supported",
+        description: "Your browser doesn't support speech recognition.",
+        variant: "destructive",
+      });
     }
   }, []);
 
@@ -79,9 +103,20 @@ export const SpeechRecorder = ({ onRecordingComplete, narrative }: SpeechRecorde
         setAudioBlob(blob);
         setAudioUrl(URL.createObjectURL(blob));
         
-        // Analyze speech and generate results
-        const analysis = analyzeSpeech(transcript, recordingTime);
-        onRecordingComplete(blob, transcript, analysis);
+        // Ensure we have the final transcript before analysis
+        setTimeout(() => {
+          const finalTranscript = transcript.trim();
+          if (finalTranscript) {
+            const analysis = analyzeSpeech(finalTranscript, recordingTime);
+            onRecordingComplete(blob, finalTranscript, analysis);
+          } else {
+            toast({
+              title: "No Speech Detected",
+              description: "Please try recording again and speak clearly.",
+              variant: "destructive",
+            });
+          }
+        }, 500); // Small delay to ensure transcript is complete
       };
 
       mediaRecorder.start();

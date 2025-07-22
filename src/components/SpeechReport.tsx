@@ -12,18 +12,18 @@ interface SpeechReportProps {
 
 export const SpeechReport = ({ analysis, transcript }: SpeechReportProps) => {
   const performanceData = [
-    { name: "Clarity", value: analysis.clarity, color: "#3B82F6" },
-    { name: "Confidence", value: analysis.confidence, color: "#10B981" },
-    { name: "Tonal Variation", value: analysis.tonalVariation, color: "#F59E0B" },
-    { name: "Energy", value: analysis.energy, color: "#EF4444" },
+    { name: "Clarity", value: Math.round(analysis.clarity), color: "#3B82F6" },
+    { name: "Confidence", value: Math.round(analysis.confidence), color: "#10B981" },
+    { name: "Tonal Variation", value: Math.round(analysis.tonalVariation), color: "#F59E0B" },
+    { name: "Energy", value: Math.round(analysis.energy), color: "#EF4444" },
   ];
 
   const radarData = [
-    { subject: "Clarity", A: analysis.clarity, fullMark: 100 },
-    { subject: "Confidence", A: analysis.confidence, fullMark: 100 },
-    { subject: "Tonal Variation", A: analysis.tonalVariation, fullMark: 100 },
-    { subject: "Energy", A: analysis.energy, fullMark: 100 },
-    { subject: "Pacing", A: Math.min(100, (analysis.wpm / 180) * 100), fullMark: 100 },
+    { subject: "Clarity", A: Math.round(analysis.clarity), fullMark: 100 },
+    { subject: "Confidence", A: Math.round(analysis.confidence), fullMark: 100 },
+    { subject: "Tonal Variation", A: Math.round(analysis.tonalVariation), fullMark: 100 },
+    { subject: "Energy", A: Math.round(analysis.energy), fullMark: 100 },
+    { subject: "Pacing", A: Math.round(Math.min(100, (analysis.wpm / 180) * 100)), fullMark: 100 },
   ];
 
   const levelColors = {
@@ -83,7 +83,7 @@ export const SpeechReport = ({ analysis, transcript }: SpeechReportProps) => {
               <div>
                 <p className="text-sm text-muted-foreground">Clarity</p>
                 <p className={`text-2xl font-bold ${getScoreColor(analysis.clarity)}`}>
-                  {analysis.clarity}%
+                  {Math.round(analysis.clarity)}%
                 </p>
               </div>
             </div>
@@ -97,7 +97,7 @@ export const SpeechReport = ({ analysis, transcript }: SpeechReportProps) => {
               <div>
                 <p className="text-sm text-muted-foreground">Confidence</p>
                 <p className={`text-2xl font-bold ${getScoreColor(analysis.confidence)}`}>
-                  {analysis.confidence}%
+                  {Math.round(analysis.confidence)}%
                 </p>
               </div>
             </div>
@@ -111,7 +111,7 @@ export const SpeechReport = ({ analysis, transcript }: SpeechReportProps) => {
               <div>
                 <p className="text-sm text-muted-foreground">Energy</p>
                 <p className={`text-2xl font-bold ${getScoreColor(analysis.energy)}`}>
-                  {analysis.energy}%
+                  {Math.round(analysis.energy)}%
                 </p>
               </div>
             </div>
@@ -124,7 +124,7 @@ export const SpeechReport = ({ analysis, transcript }: SpeechReportProps) => {
               <Clock className="w-5 h-5 text-blue-400" />
               <div>
                 <p className="text-sm text-muted-foreground">Speaking Rate</p>
-                <p className="text-2xl font-bold text-foreground">{analysis.wpm} WPM</p>
+                <p className="text-2xl font-bold text-foreground">{Math.round(analysis.wpm)} WPM</p>
               </div>
             </div>
           </CardContent>
@@ -208,12 +208,12 @@ export const SpeechReport = ({ analysis, transcript }: SpeechReportProps) => {
               </div>
               <div className="bg-muted/20 p-4 rounded-lg">
                 <p className="text-sm text-muted-foreground">Pause Count</p>
-                <p className="text-xl font-bold text-foreground">{analysis.pauseCount}</p>
+                <p className="text-xl font-bold text-foreground">{Math.round(analysis.pauseCount)}</p>
                 <p className="text-xs text-muted-foreground mt-1">Natural pacing</p>
               </div>
               <div className="bg-muted/20 p-4 rounded-lg">
                 <p className="text-sm text-muted-foreground">Duration</p>
-                <p className="text-xl font-bold text-foreground">{analysis.duration}s</p>
+                <p className="text-xl font-bold text-foreground">{Math.round(analysis.duration)}s</p>
                 <p className="text-xs text-muted-foreground mt-1">
                   {analysis.duration > 60 ? "Good length" : "Try for longer practice"}
                 </p>

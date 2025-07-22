@@ -57,10 +57,10 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-8 neural-card">
-              <TabsTrigger value="practice" className="text-lg py-3">
+              <TabsTrigger value="practice" className="text-lg py-3 flex items-center justify-center">
                 Practice Session
               </TabsTrigger>
-              <TabsTrigger value="results" className="text-lg py-3" disabled={!speechAnalysis}>
+              <TabsTrigger value="results" className="text-lg py-3 flex items-center justify-center" disabled={!speechAnalysis}>
                 Analysis Results
               </TabsTrigger>
             </TabsList>
