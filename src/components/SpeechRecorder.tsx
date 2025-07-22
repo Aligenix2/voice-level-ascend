@@ -284,24 +284,27 @@ export const SpeechRecorder = ({ onRecordingComplete, narrative }: SpeechRecorde
           )}
         </div>
 
-        {/* Recording Timer */}
+
+        {/* Live Sound Wave Animation */}
         {isRecording && (
           <div className="text-center">
-            <div className="text-2xl font-mono text-primary neural-animate">
+            <div className="text-2xl font-mono text-primary neural-animate mb-2">
               {formatTime(recordingTime)}
             </div>
-            <div className="flex items-center justify-center mt-2">
+            <div className="flex items-center justify-center gap-1 mb-2">
+              <div className="w-1 bg-primary rounded-full animate-pulse" style={{height: '20px', animationDelay: '0ms', animationDuration: '600ms'}}></div>
+              <div className="w-1 bg-primary rounded-full animate-pulse" style={{height: '30px', animationDelay: '100ms', animationDuration: '600ms'}}></div>
+              <div className="w-1 bg-primary rounded-full animate-pulse" style={{height: '25px', animationDelay: '200ms', animationDuration: '600ms'}}></div>
+              <div className="w-1 bg-primary rounded-full animate-pulse" style={{height: '35px', animationDelay: '300ms', animationDuration: '600ms'}}></div>
+              <div className="w-1 bg-primary rounded-full animate-pulse" style={{height: '20px', animationDelay: '400ms', animationDuration: '600ms'}}></div>
+              <div className="w-1 bg-primary rounded-full animate-pulse" style={{height: '28px', animationDelay: '500ms', animationDuration: '600ms'}}></div>
+              <div className="w-1 bg-primary rounded-full animate-pulse" style={{height: '32px', animationDelay: '600ms', animationDuration: '600ms'}}></div>
+              <div className="w-1 bg-primary rounded-full animate-pulse" style={{height: '24px', animationDelay: '700ms', animationDuration: '600ms'}}></div>
+            </div>
+            <div className="flex items-center justify-center">
               <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse mr-2"></div>
               <span className="text-sm text-muted-foreground">Recording...</span>
             </div>
-          </div>
-        )}
-
-        {/* Live Transcription */}
-        {transcript && (
-          <div className="bg-muted/20 p-4 rounded-lg border border-border/50">
-            <h3 className="text-sm font-medium text-muted-foreground mb-2">Live Transcription:</h3>
-            <p className="text-foreground">{transcript}</p>
           </div>
         )}
 
